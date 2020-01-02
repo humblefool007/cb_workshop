@@ -27,7 +27,7 @@ def update_todo(request, pk):
     try:
         todo = models.Todo.objects.get(pk=pk)
     except Exception as e:
-        return Response({"error": "record not exists"}, status=404)
+        return Response({"error": "record does not exists"}, status=404)
     serializer = TodoSerializer(todo, data=request.data)
     if serializer.is_valid():
         serializer.save()
