@@ -10,26 +10,27 @@ from .serializers import TodoSerializer
 def get_todos(request):
     todos = models.Todo.objects.all()
     serializer = TodoSerializer(todos, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data, status=200)
 
 @api_view(["POST"])
 def post_todo(request):
-    print(request.data)
     serializer = TodoSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+    else:
+        return Response(serializer.errors, status=400)  
+    return Response(serializer.data, status=204)
 
 
 @api_view(["PUT"])
 def update_todo(request, pk):
-    print("sasasasa", pk)
-    todo = models.Todo.objects.get(pk=pk)
-    print(todo)
+    try:
+        todo = models.Todo.objects.get(pk=pk)
+    except Exception as e:
+        return Response({"error": "record not exists"}, status=404)
     serializer = TodoSerializer(todo, data=request.data)
     if serializer.is_valid():
         serializer.save()
     else:
-        err = serializer.is_valid()
-        print("sasasasa", err, serializer.errors)
-    return Response(serializer.errors, status=400)
+        return Response(serializer.errors, status=400)
+    return Response(serializer.data, status=200)
