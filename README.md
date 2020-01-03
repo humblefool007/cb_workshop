@@ -5,7 +5,8 @@ Carte Blanche workshop
 - Extract the zip file
 - After extracting move to the unzipped directory folder
 - Install the external dependecies using pip
-  ```python3 -m pip install -r requirements.txt (or) pip3 install -r requirements.txt
+  ```
+  python3 -m pip install -r requirements.txt (or) pip3 install -r requirements.txt
   ```
   
 
