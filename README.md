@@ -77,7 +77,7 @@ Carte Blanche workshop
   ```
 - Run the webserver 
   ```
-  python3.6 manage.py startserver
+  python3.6 manage.py runserver
   ```
 
   
