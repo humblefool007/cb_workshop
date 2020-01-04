@@ -45,7 +45,7 @@ Carte Blanche workshop
   INSTALLED_APPS = [
     ....,
     'rest_framework',
-    'todos'
+    'webserver'
     ]
 - Create webserver/urls.py file in webserver app
   ```
