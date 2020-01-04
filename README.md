@@ -49,6 +49,35 @@ Carte Blanche workshop
     ]
 - Create webserver/urls.py file in webserver app
   ```
+  from django.urls import path
+  from .views import hello
+
+  urlpatterns = [
+    path("hello", hello)
+   ]
+   ```
+- Create webserver/views.py file in 
+  ```
+  from rest_framework.response import Response
+  from rest_framework.decorators import api_view
   
-   
+  @api_view(["GET"])
+  def hello(request):
+      return Response({"message": "hello world"}, status=200)
+   ```
+- Edit sample/urls.py file in
+  ```
+  from django.contrib import admin
+  from django.urls import path
+  from django.urls import include
+
+  urlpatterns = [
+      path('apis/v1/', include('webserver.urls')),
+  ]
+  ```
+- Run the webserver 
+  ```
+  python3.6 manage.py startserver
+  ```
+
   
